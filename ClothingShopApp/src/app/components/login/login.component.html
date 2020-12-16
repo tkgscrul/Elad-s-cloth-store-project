@@ -1,0 +1,43 @@
+<app-nav-bar></app-nav-bar>
+<br>
+<br>
+<br>
+<div class="wrapper">
+  <h1>Login panel</h1>
+  <div style="background-color: lightgray;" *ngIf="auth.user$ | async as user; else login">
+    <pre *ngIf="user.roles.admin == true">
+    <a routerLink="/admin-page" ><h1>admin-panel</h1></a>
+    </pre>
+    <pre style="position: relative;" *ngIf="user.roles.subscriber == true">
+        <h1 *ngIf="user.orderStatus.status == 1">You Didnt Order anything please <a href="#" routerLinkActive="active">order</a> </h1>
+         <h1 *ngIf="user.orderStatus.status == 2">your order is in the oven !</h1>
+         <h1 *ngIf="user.orderStatus.status == 3">your order is on the way !</h1>
+         <h1 *ngIf="user.orderStatus.status == 4">your order is waiting to be collected by you ! </h1>
+    </pre>
+    <button class="button" (click)="auth.signOut()">Sign Out</button>
+  </div>
+
+  <hr>
+
+  <ng-template #login>
+    <button class="button" (click)="auth.googleSignin()">Login with Google</button>
+    <button class="button" (click)="auth.register()">Register with Google</button>
+  </ng-template>
+  <h2 style="color: gray;">site policy</h2>
+<p style="text-align: center;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in lacus ac sapien placerat sodales at ac velit. Aenean vehicula, dolor non ultrices dignissim, tellus metus interdum lacus, et congue erat risus id eros. Morbi volutpat tellus nec orci elementum, ut lobortis mauris pellentesque. Praesent iaculis lobortis lectus. Morbi eget gravida justo, non volutpat ex. Suspendisse vitae malesuada augue. Aenean pretium mollis diam sed tempor. Nullam ante arcu, malesuada sit amet faucibus quis, condimentum id orci.
+
+  Etiam tempus, metus quis ultrices vehicula, sem risus vestibulum tortor, non porttitor mi urna vel elit. Curabitur rhoncus purus a nisl eleifend, euismod dignissim leo accumsan. Mauris consectetur vulputate convallis. Suspendisse feugiat lacus bibendum ex pellentesque, quis auctor libero faucibus. Aliquam aliquet, massa quis convallis luctus, tellus lacus sagittis risus, nec facilisis lorem massa vitae erat. Praesent placerat metus sit amet nunc placerat fringilla. Nam id dignissim orci. Quisque interdum massa ut lectus egestas egestas.
+  
+  Suspendisse vulputate quam eget dolor facilisis interdum. Proin vehicula consectetur egestas. Curabitur ornare, neque nec mattis molestie, mauris quam euismod elit, at rhoncus enim arcu consequat dolor. Vivamus sit amet nisi vel nibh ultricies ornare vel eget ex. Duis eget venenatis libero. Duis imperdiet ac eros sed pulvinar. In efficitur sodales velit quis facilisis. Nunc condimentum ut augue at sollicitudin. Integer eu felis mattis, interdum diam efficitur, convallis nulla. Nulla tempus efficitur lobortis. Nunc rhoncus laoreet quam vel semper.
+  
+  Integer ligula arcu, ultricies sit amet mollis finibus, rutrum non erat. Pellentesque iaculis diam ut nibh eleifend, accumsan tincidunt nulla dignissim. Etiam non interdum velit, non egestas tellus. Vivamus interdum, sem eu interdum tincidunt, sapien neque sodales odio, non tempus dui nunc sed lorem. Integer mi leo, placerat et diam at, tristique venenatis purus. Phasellus faucibus efficitur enim non pellentesque. Phasellus hendrerit nulla ullamcorper dolor vestibulum, non consectetur justo sagittis. Integer vestibulum ut orci vitae tristique. Suspendisse potenti. Integer gravida mi sed est ultricies, at convallis neque blandit. Pellentesque sed fringilla ligula. Aenean in lectus tristique elit lacinia aliquet. Quisque ut justo ultricies, aliquam ex id, scelerisque mauris. Nullam quis lacinia lectus.
+  
+  Quisque finibus facilisis dictum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce lacinia ullamcorper orci, quis blandit tellus finibus at. Phasellus aliquet lectus nec purus mollis, vitae pellentesque sem eleifend. In magna urna, blandit sed rutrum sed, commodo a felis. Quisque faucibus scelerisque eros, vitae efficitur urna maximus a. Aliquam laoreet ligula id ipsum gravida tempus. Aliquam erat volutpat. Nulla sed dignissim nunc. Etiam eu elementum enim. Sed enim neque, faucibus eget consectetur nec, mollis non quam. Nullam et mauris ac sem venenatis elementum vitae quis nulla. Curabitur mauris nisl, convallis et dolor vel, euismod maximus ligula. Nam rhoncus risus eget purus hendrerit dictum. Proin justo nisl, hendrerit eget varius a, hendrerit quis tortor.</p>
+  <br>
+  <br>
+  <br>
+  <br>
+</div>
+
+
+<app-footer></app-footer>

@@ -1,0 +1,154 @@
+<app-nav-bar></app-nav-bar>
+<app-payment></app-payment>
+<form [formGroup]="postOrder" (ngSubmit)="postOrderonSubmit()">
+  <div class="form-group">
+    <div class="px-4 px-lg-0">
+
+      
+
+      <div class="pb-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12 p-5 bg-white rounded shadow-sm mb-5">
+
+              
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col" class="border-0 bg-light">
+                        <div class="p-2 px-3 text-uppercase">Product</div>
+                      </th>
+                      <th scope="col" class="border-0 bg-light">
+                        <div class="py-2 text-uppercase">Price</div>
+                      </th>
+                      <th scope="col" class="border-0 bg-light">
+                        <div hidden class="py-2 text-uppercase">Quantity</div>
+                      </th>
+                      <th scope="col" class="border-0 bg-light">
+                        <div class="py-2 text-uppercase">Remove</div>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody *ngFor="let ele of id;let i = index">
+                    <tr>
+                      <th scope="row" class="border-0">
+                        <div class="p-2">
+                          <img src="{{productimgurl[i]}}"
+                            alt="" width="70" class="img-fluid rounded shadow-sm">
+                          <div class="ml-3 d-inline-block align-middle">
+                            <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle">{{productname[i]}}</a></h5><span
+                              class="text-muted font-weight-normal font-italic d-block">{{productdescription[i]}}</span>
+                          </div>
+                        </div>
+                      </th>
+                      <td class="border-0 align-middle"><strong>${{productprice[i]}}</strong></td>
+                      <td class="border-0 align-middle"><strong></strong></td>
+                      <td class="border-0 align-middle"><button #removeProductIdToCart value ="{{i}}" (click)="removeItemFromShowProducts(removeProductIdToCart.value)" href="#" class="text-dark"><i class="fa fa-trash"></i></button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              
+            </div>
+          </div>
+
+          <div class="row py-5 p-4 bg-white rounded shadow-sm">
+
+            <div class="col-lg-6">
+              <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Detail Information</div>
+              
+              <div class="p-4">
+                <p class="font-italic mb-4">Full Name</p>
+                <div class="input-group mb-4 border rounded-pill p-2">
+                  
+                  <input autocomplete="off" type="text" placeholder="First Name" 
+                    class="form-control border-0" formControlName="orderfirstname" #orderfirstname id="orderfirstname">
+
+                  <input autocomplete="off" type="text" placeholder="Last Name" 
+                    class="form-control border-0" formControlName="orderlastname" #orderlastname>
+                  <div class="input-group-append border-0">
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-4">
+                <p class="font-italic mb-4">Adress:</p>
+                <div class="input-group mb-4 border rounded-pill p-2">
+                  <input autocomplete="off" type="text" placeholder="Address" 
+                    class="form-control border-0" formControlName="orderadress" #orderadress>
+                  <input autocomplete="off" type="text" placeholder="Zip Code" 
+                    class="form-control border-0" formControlName="orderzipcode" #orderzipcode>
+                  <div class="input-group-append border-0">
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-4">
+                <p class="font-italic mb-4">Contact:</p>
+                <div class="input-group mb-4 border rounded-pill p-2">
+                  <input autocomplete="off" type="text" placeholder="Phone number" 
+                    class="form-control border-0" formControlName="orderphone" #orderphone>
+                  <input autocomplete="off" type="text" placeholder="Email"  
+                  class="form-control border-0" formControlName="orderemail" #orderemail>
+                  <div class="input-group-append border-0" >
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-4">
+                <p class="font-italic mb-4">If you have a coupon code, please enter it in the box below</p>
+                <div class="input-group mb-4 border rounded-pill p-2">
+                  <input  autocomplete="off" type="text" placeholder="Apply coupon" 
+                    class="form-control border-0">
+                  <div class="input-group-append border-0">
+                    <button id="button-addon3" type="button" class="btn btn-dark px-4 rounded-pill"><i
+                        class="fa fa-gift mr-2" ></i>Apply coupon</button>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Greeting card</div>
+              <div class="p-4">
+                <p class="font-italic mb-4">Write Your greeting card here if what your purches is a gift for somone you
+                  love
+                </p>
+                <textarea autocomplete="off" name="" cols="30" rows="2" class="form-control" formControlName="orderpersonalgreeting" #orderpersonalgreeting></textarea>
+              </div>
+              <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Instructions for seller</div>
+              <div class="p-4">
+                <p class="font-italic mb-4">If you have some information for the seller you can leave them in the box
+                  below
+                </p>
+                <textarea autocomplete="off" name="" cols="30" rows="2" class="form-control" formControlName="ordernote" #ordernote></textarea>
+              </div>
+            </div>
+            
+            <div class="col-lg-6">
+              <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Order summary </div>
+              <div class="p-4">
+                <p class="font-italic mb-4">Shipping and additional costs are calculated based on values you have
+                  entered.
+                </p>
+                <ul class="list-unstyled mb-4">
+                  <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Order
+                      Subtotal
+                    </strong><strong>${{Totalpricearr}}</strong></li>
+                  <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Shipping and
+                      handling</strong><strong>$10.00</strong></li>
+                  <li class="d-flex justify-content-between py-3 border-bottom"><strong
+                      class="text-muted">Total</strong>
+                    <h5 class="font-weight-bold">${{Totalpricearr + 10}}</h5>
+                  </li>
+                </ul><button type="submit" value="Submit" href="#" class="btn btn-dark rounded-pill py-2 btn-block">Procceed to checkout</button>
+               
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<app-footer></app-footer>
